@@ -1,9 +1,10 @@
 import axios from "axios";
 import https from "https";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
-  let outerData = "";
+  const [outerData, setOuterData] = useState("");
 
   https
     .get("https://utility.ramecho.repl.co/show", (resp) => {
@@ -18,7 +19,7 @@ function App() {
       resp.on("end", () => {
         console.log("data");
         console.log(data);
-        //outerData = data;
+        setOuterData(data);
       });
     })
     .on("error", (err) => {
